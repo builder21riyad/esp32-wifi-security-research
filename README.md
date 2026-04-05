@@ -7,4 +7,26 @@ This repository is a heavily modified fork of the original ESP32 Wi-Fi Penetrati
 * **Full-Stack Payload Integration:** Updated the embedded HTML/JavaScript frontend to successfully pass larger data structures to the backend. Replaced standard form submissions with 7-byte `ArrayBuffer` payloads and `DataView` formatting, ensuring exact memory alignment for C-struct deserialization (`__attribute__((packed))`) on the ESP32.
 * **Strict C Compliance:** Resolved implicit function declaration errors (`ntohs`) enforced by modern GNU compilers by integrating and linking proper POSIX network mapping libraries.
 
+
+
+## ⚡ Quick Start Installation (No Compiling Required)
+
+The easiest way to use this tool is to flash the pre-compiled binaries directly to your ESP32. You do not need to install the ESP-IDF compiler.
+
+### Step 1: Download the Binaries
+Go to the **[Releases](../../releases)** tab on the right side of this GitHub page and download the three required `.bin` files from the latest release:
+1. `bootloader.bin`
+2. `partition-table.bin`
+3. `esp32-wifi-penetration-tool.bin`
+
+Place all three files into a single, easy-to-find folder on your computer.
+
+### Step 2: Install the Flasher Tool
+You will need Python installed on your computer. Open your terminal or command prompt and install Espressif's official flashing tool by running:
+```bash
+pip install esptool
+
+
 > **Disclaimer:** This project and its modifications are intended strictly for educational purposes, embedded systems learning, and authorized network auditing.
+
+
