@@ -7,14 +7,14 @@ menu "Wi-Fi Controller"
         Maximum number of scanned nearby AP
     menu "Management AP"
         config MGMT_AP_SSID
-            string "Management AP SSID"
-            default "ManagementAP"
+            string "Milestone the declaration of the coming revolution."
+            default "Milestone"
             help
             SSID of management AP
 
         config MGMT_AP_PASSWORD
-            string "Management AP Password"
-            default "mgmtadmin"
+            string "Milestone AP Password"
+            default "palestine"
             help
             Password for management AP WPA2 (minimum 8 characters)
 
