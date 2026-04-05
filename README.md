@@ -48,3 +48,55 @@ Grab another device connected to your home Wi-Fi and try to load a webpage. If i
 
 ---
 > **⚠️ Important Security Warning:** This tool is incredibly powerful. You must **only** use this on your own personal home Wi-Fi network, or a network where you have explicit, written permission from the owner to perform security testing. Disrupting networks you do not own is illegal.
+
+
+
+If a user prefers using the terminal (Command Prompt or PowerShell) instead of a web browser, they can flash the board using a simple Python tool. This is the fastest method for anyone who already has a bit of technical experience.
+
+Here is the step-by-step terminal guide you can share with them:
+
+### 🛠️ Prerequisites
+* An ESP32 development board and a data-capable USB cable.
+* **Python** installed on the computer (can be downloaded from python.org).
+
+---
+
+### Step 1: Download the Files
+Go to my GitHub repository's **Releases** page and download these three files into a new, empty folder on your computer (for example, make a folder called `esp32-hack` on your Desktop):
+* `bootloader.bin`
+* `partition-table.bin`
+* `esp32-wifi-penetration-tool.bin`
+
+### Step 2: Install the Flasher Tool
+Open your Command Prompt or PowerShell, and install Espressif's official flashing tool by typing:
+```bash
+pip install esptool
+```
+
+### Step 3: Find Your ESP32's Port
+Plug your ESP32 into your computer via USB. 
+* **Windows:** Open "Device Manager" and look under "Ports (COM & LPT)" to find your COM port (e.g., `COM3`, `COM5`).
+* **Mac/Linux:** Open terminal and run `ls /dev/tty*`. Look for something like `/dev/ttyUSB0` or `/dev/tty.SLAB_USBtoUART`.
+
+### Step 4: Flash the Board
+In your terminal, navigate to the folder where you saved the three `.bin` files. For example:
+```bash
+cd Desktop\esp32-hack
+```
+
+Now, copy and paste the following command. **Important: Change `COM3` to your actual port!**
+
+```bash
+python -m esptool --chip esp32 -p COM3 -b 460800 --before default_reset --after hard_reset write_flash --flash_mode dio --flash_size 2MB --flash_freq 40m 0x1000 bootloader.bin 0x8000 partition-table.bin 0x10000 esp32-wifi-penetration-tool.bin
+```
+
+*(Troubleshooting tip: If the terminal gets stuck saying `Connecting........_`, press and hold the physical **BOOT** button on your ESP32 until the upload starts!)*
+
+### Step 5: Connect to the Tool
+Once the terminal says **"Hard resetting via RTS pin..."**, the upload is finished and the board is running!
+1. On your phone or computer, look for a new Wi-Fi network called **ManagementAP** and connect to it.
+2. Open your web browser and navigate to **`http://192.168.4.1`**.
+3. You are now inside the dashboard. Select your home Wi-Fi, change the Attack Type to **ATTACK_TYPE_DOS**, set a timer (e.g., `600` for 10 minutes), and click **Attack**.
+
+---
+> **⚠️ Important Security Warning:** This tool is strictly for educational purposes and authorized network auditing. You must **only** use this on your own personal home Wi-Fi network or a network where you have explicit permission.
