@@ -33,7 +33,7 @@ You don't need to install any software to do this.
 ### Step 3: Connect to the Tool
 Once the web flasher says 100% complete, unplug your ESP32 and plug it back in to restart it.
 1. Grab your smartphone or laptop and open your Wi-Fi settings.
-2. Look for a new Wi-Fi network called **ManagementAP** and connect to it the password is mgmtadmin .
+2. Look for a new Wi-Fi network called **Milestone** and connect to it the password is palestine .
 3. Open your web browser and type this address into the search bar: **`192.168.4.1`**
 
 ### Step 4: Run the Test
